@@ -12,19 +12,19 @@ const employeeSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        required: true
+        required: false
     },
     team: {
         type: String,
-        required: true
+        required: false
     },
     dateOfJoining: {
         type: String,
-        required: true
+        required: false
     },
     address: {
         type: String,
-        required: true
+        required: false
     }
 }, { timestamps: true});
 

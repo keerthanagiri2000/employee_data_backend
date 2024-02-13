@@ -29,6 +29,19 @@ const listAllEmployee = async (req, res) => {
     }
 };
 
+const listEmployeeById = async (req, res) => {
+    try {
+        const { employeeId } = req.params;
+        const employeeById = await Employee.findOne({ _id: employeeId }).lean();
+        if (!employeeById) {
+            return res.status(404).send({ status: false, message: "Employee not found"});
+        }
+        return res.status(200).send({ status: true, message: "Employee details listed", data: employeeId });
+
+    } catch (error) {
+        return res.status(500).send({ status: false, message: error.message });
+    }
+};
 
 const editEmployee = async (req, res) => {
     try {
@@ -69,6 +82,7 @@ const deleteEmployee = async(req, res) => {
 module.exports = {
     addEmployee,
     listAllEmployee,
+    listEmployeeById,
     editEmployee,
     deleteEmployee 
 }
